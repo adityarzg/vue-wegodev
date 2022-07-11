@@ -11,7 +11,7 @@
         <button @click="newNote" class="bg-success btn btn-new-note">
           + Note Baru
         </button>
-        <ListNotes :propNotes="notes" :propEditNote="editNote" />
+        <ListNotes :propEditNote="editNote" />
       </div>
       <!-- LIST -->
     </div>
@@ -20,7 +20,6 @@
       <FormNotes
         :propSaveNote="SaveNote"
         :propUpdateNote="updateNote"
-        :propDataForm="dataForm"
         :propRemoveNote="removeNote"
       />
     </div>
@@ -36,10 +35,6 @@ export default {
   data: function () {
     return {
       dataForm: {},
-      notes: [
-        { id: 1, title: "Judul Catatan", description: "Isi Catatan" },
-        { id: 2, title: "Notes Title", description: "Notes Description" },
-      ],
     };
   },
   components: {
@@ -69,9 +64,6 @@ export default {
       };
       this.notes.push(newNote);
       this.editNote(newId);
-    },
-    editNote(id) {
-      this.dataForm = this.notes.find((note) => note.id === id);
     },
     updateNote(id, title, description) {
       let noteIndex = this.notes.findIndex((note) => note.id === id);
